@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; width: 250px; padding: 15px; text-align: center; }
+    #status { font-weight: bold; color: #555; }
+    #result { display: none; margin-top: 10px; }
+    a { 
+      display: inline-block; padding: 10px 15px; 
+      background: #4285f4; color: white; text-decoration: none; 
+      border-radius: 6px; word-break: break-all; font-weight: bold;
+    }
+    a:hover { background: #3367d6; }
+  </style>
+</head>
+<body>
+  <div id="status">Scanning screen...</div>
+  
+  <div id="result">
+    <p style="margin-top:0; color: green; font-weight:bold;">QR Code Found!</p>
+    <a id="link" href="#" target="_blank">Open Link</a>
+  </div>
+
+  <script src="jsQR.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
