@@ -1,13 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "Lightning QR Scanner",
-  "version": "1.0",
-  "description": "Instantly scans the current screen for a QR code and extracts the link.",
+  "name": "Ultimate QR Toolkit",
+  "version": "2.0",
+  "description": "Lightning-fast QR scanner, right-click scanner, history vault, and QR generator.",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage",
+    "contextMenus"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Scan for QR Code"
+    "default_title": "Open QR Toolkit"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
 }

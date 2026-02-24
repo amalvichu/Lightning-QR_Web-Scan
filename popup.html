@@ -2,26 +2,69 @@
 <html>
 <head>
   <style>
-    body { font-family: sans-serif; width: 250px; padding: 15px; text-align: center; }
+    body { font-family: sans-serif; width: 300px; padding: 15px; text-align: center; color: #333; }
+    .section { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+    
+    /* Buttons and Links */
+    .btn { display: inline-block; padding: 8px 12px; background: #4285f4; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; width: 100%; box-sizing: border-box;}
+    .btn:hover { background: #3367d6; }
+    .btn-danger { background: #ea4335; margin-top: 10px;}
+    .btn-danger:hover { background: #c5221f; }
+    
+    /* Side-by-side buttons for the generator */
+    .action-row { display: flex; gap: 8px; margin-top: 10px; }
+    .action-row .btn { flex: 1; padding: 6px; font-size: 13px; }
+
+    /* Settings & History */
+    .setting-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+    #history-list { text-align: left; max-height: 100px; overflow-y: auto; font-size: 12px; background: #f9f9f9; padding: 5px; border-radius: 4px; }
+    .history-item { display: block; margin-bottom: 5px; word-break: break-all; color: #4285f4; }
+    
+    /* Display States */
     #status { font-weight: bold; color: #555; }
-    #result { display: none; margin-top: 10px; }
-    a { 
-      display: inline-block; padding: 10px 15px; 
-      background: #4285f4; color: white; text-decoration: none; 
-      border-radius: 6px; word-break: break-all; font-weight: bold;
-    }
-    a:hover { background: #3367d6; }
+    #qr-generator-view, #result-view { display: none; }
   </style>
 </head>
 <body>
-  <div id="status">Scanning screen...</div>
-  
-  <div id="result">
-    <p style="margin-top:0; color: green; font-weight:bold;">QR Code Found!</p>
-    <a id="link" href="#" target="_blank">Open Link</a>
+
+  <div class="section" id="main-area">
+    <div id="status">Scanning screen...</div>
+    
+    <div id="result-view">
+      <p style="color: green; font-weight:bold; margin-top: 0;">Code Found!</p>
+      <a id="scanned-link" class="btn" href="#" target="_blank">Open Link</a>
+    </div>
+
+    <div id="qr-generator-view">
+      <p style="font-weight:bold; margin-top: 0; font-size: 14px; margin-bottom: 10px;">Page QR Code:</p>
+      <canvas id="qr-canvas"></canvas>
+      
+      <div class="action-row">
+        <button id="copy-gen-link" class="btn">Copy Link</button>
+        <button id="download-gen-qr" class="btn" style="background: #34a853;">Save QR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="text-align: left;">
+    <div class="setting-row">
+      <label>Enable QR Generator</label>
+      <input type="checkbox" id="toggle-gen" checked>
+    </div>
+    <div class="setting-row">
+      <label>Enable History Vault</label>
+      <input type="checkbox" id="toggle-hist" checked>
+    </div>
+  </div>
+
+  <div id="history-section">
+    <strong style="display:block; text-align:left; margin-bottom:5px;">Recent Scans:</strong>
+    <div id="history-list">No recent scans.</div>
+    <button id="clear-history" class="btn btn-danger">Clear History</button>
   </div>
 
   <script src="jsQR.js"></script>
+  <script src="qrious.min.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
